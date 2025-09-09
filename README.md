@@ -1,13 +1,16 @@
-Pipeline de Ingestão de Dados - SLMandic (MySQL para BigQuery)
-Visão Geral de Negócios
+**Pipeline de Ingestão de Dados - SLMandic (MySQL para BigQuery)**
+
+**Visão Geral de Negócios**
+
 Este documento descreve o processo automatizado de carga de dados da base *DataBase* para o nosso Data Lake. O objetivo principal é garantir que os dados estejam sempre atualizados e disponíveis para análises estratégicas, permitindo uma fonte única de verdade e tomada de decisões ágeis.
 
 O processo opera de forma programada, verificando se houve alguma alteração nas tabelas de origem e, em caso afirmativo, disparando a ingestão para o BigQuery. Isso otimiza o uso de recursos, pois somente os dados que foram alterados são processados.
 
-Arquitetura da Solução
+**Arquitetura da Solução**
+
 A solução é construída com base na infraestrutura do Google Cloud Platform (GCP) e orquestrada pelo Apache Airflow.
 
-Componentes Principais:
+**Componentes Principais:**
 
 MySQL Database (AWS Aurora): Fonte dos dados originais (*DataBase*).
 
@@ -19,11 +22,9 @@ Google BigQuery: Destino final dos dados, atuando como o principal repositório 
 
 Google Cloud Storage (GCS): Armazena os scripts do Spark, dependências e arquivos intermediários.
 
-!
 
+**Documentação Técnica**
 
-
-Documentação Técnica
 1. Estrutura do Projeto
 O pipeline é composto por duas DAGs principais do Airflow, que trabalham em conjunto:
 
@@ -44,7 +45,7 @@ Compara essas datas com o histórico de execuções gravado no BigQuery.
 
 Gera uma lista de tabelas que foram atualizadas e a salva em um arquivo JSON no GCS.
 
-Disparo da Ingestão:
+**Disparo da Ingestão:**
 
 A DAG controller_*DataBase* dispara a DAG ingest_*DataBase*.
 
@@ -61,7 +62,7 @@ Após a ingestão, os metadados da execução (contagem de linhas, tempo) são r
 3. Configurações e Dependências
 As configurações e dependências do projeto são gerenciadas no Airflow e no GCP.
 
-Parâmetros:
+**Parâmetros:**
 
 Projeto GCP: slmandic-datalake-hml
 
